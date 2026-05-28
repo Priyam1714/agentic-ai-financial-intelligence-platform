@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agentic AI Financial Intelligence Platform Blueprint</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    body {
+      background: #050816;
+      color: #fff;
+      overflow-x: auto;
+    }
+
+    .header {
+      padding: 24px 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      background: linear-gradient(90deg,#0d1228,#050816);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #9ca3af;
+      font-size: 15px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background: #121b34;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #1d294d;
+    }
+
+    .active {
+      background: #7c3aed;
+    }
+
+    .container {
+      position: relative;
+      width: 1800px;
+      height: 1200px;
+      margin: 20px auto 100px;
+    }
+
+    .layer-title {
+      position: absolute;
+      left: 20px;
+      font-size: 14px;
+      letter-spacing: 1px;
+      font-weight: bold;
+      color: #c084fc;
+      text-transform: uppercase;
+    }
+
+    .box {
+      position: absolute;
+      background: rgba(16,23,42,0.95);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 18px;
+      width: 240px;
+      min-height: 90px;
+      transition: 0.25s;
+      cursor: pointer;
+      z-index: 5;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .box:hover {
+      transform: translateY(-5px) scale(1.02);
+      border-color: #8b5cf6;
+      box-shadow: 0 0 24px rgba(139,92,246,0.45);
+    }
+
+    .box h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .box p {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .line {
+      stroke: rgba(255,255,255,0.25);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .flow {
+      stroke-width: 5;
+      fill: none;
+      stroke-linecap: round;
+      opacity: 0;
+      filter: drop-shadow(0 0 6px currentColor);
+      stroke-dasharray: 12 8;
+      animation: dash 2s linear infinite;
+    }
+
+    @keyframes dash {
+      to {
+        stroke-dashoffset: -40;
+      }
+    }
+
+    .tooltip {
+      position: fixed;
+      background: rgba(15,23,42,0.98);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 13px;
+      max-width: 280px;
+      color: #e2e8f0;
+      pointer-events: none;
+      opacity: 0;
+      transition: 0.15s;
+      z-index: 9999;
+      box-shadow: 0 0 18px rgba(0,0,0,0.4);
+    }
+
+    .legend {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 320px;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 20px;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .legend h3 {
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+
+    .legend-color {
+      width: 24px;
+      height: 4px;
+      border-radius: 99px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Agentic AI Financial Intelligence Platform</h1>
+  <p>Interactive cloud-native architecture blueprint with animated runtime data-flow visualization</p>
+
+  <div class="controls">
+    <button onclick="toggleFlow('auth')">Show Auth Flow</button>
+    <button onclick="toggleFlow('query')">Show Query Flow</button>
+    <button onclick="toggleFlow('tool')">Show Tool Flow</button>
+    <button onclick="toggleFlow('graph')">Show Graph Flow</button>
+    <button onclick="toggleFlow('session')">Show Session Flow</button>
+    <button onclick="toggleFlow('obs')">Show Observability Flow</button>
+    <button onclick="resetFlows()">Reset</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="layer-title" style="top: 40px;">External Identity Layer</div>
+  <div class="layer-title" style="top: 240px;">Security & Access Layer</div>
+  <div class="layer-title" style="top: 470px;">Application & Agent Runtime Layer</div>
+  <div class="layer-title" style="top: 760px;">Tool & Data Services Layer</div>
+  <div class="layer-title" style="top: 1040px;">Observability & Operations Layer</div>
+
+  <div class="box" style="left:80px;top:80px;" data-info="External analyst/tester accessing the platform using Google identity.">
+    <h3>External Users</h3>
+    <p>Fraud Analysts, Recruiters, Evaluators & Investigators</p>
+  </div>
+
+  <div class="box" style="left:420px;top:80px;" data-info="Handles Google OAuth authentication and identity token generation.">
+    <h3>Google OAuth</h3>
+    <p>External Gmail Authentication & Token Issuance</p>
+  </div>
+
+  <div class="box" style="left:760px;top:80px;" data-info="Approval-based onboarding mechanism using Google Groups.">
+    <h3>Google Groups</h3>
+    <p>Access Queue & Approval Workflow</p>
+  </div>
+
+  <div class="box" style="left:1100px;top:80px;" data-info="Administrator approves or rejects external user access requests.">
+    <h3>Google Admin</h3>
+    <p>Identity Governance & Approval Control</p>
+  </div>
+
+  <div class="box" style="left:580px;top:280px; width:340px;" data-info="Identity-Aware Proxy enforcing zero-trust access and authorization.">
+    <h3>Identity-Aware Proxy (IAP)</h3>
+    <p>OAuth Validation • Access Governance • Zero Trust Enforcement</p>
+  </div>
+
+  <div class="box" style="left:250px;top:520px; width:320px;" data-info="Cloud Run hosted FastAPI frontend serving the ADK runtime and Gemini interactions.">
+    <h3>finance-agent (Cloud Run)</h3>
+    <p>FastAPI • Dockerized Runtime • Gemini 2.5 Flash • ADK Runtime</p>
+  </div>
+
+  <div class="box" style="left:720px;top:520px; width:320px;" data-info="Secure internal tool orchestration layer controlling database/tool access.">
+    <h3>MCP Toolbox (Cloud Run)</h3>
+    <p>Secure Tool Execution • Tool Registry • Internal REST</p>
+  </div>
+
+  <div class="box" style="left:1180px;top:480px; width:260px;" data-info="Infrastructure-as-Code provisioning for reproducible cloud deployments.">
+    <h3>Terraform (IaC)</h3>
+    <p>Infrastructure Provisioning & Automation</p>
+  </div>
+
+  <div class="box" style="left:1480px;top:480px; width:240px;" data-info="Least-privilege identities used for secure service-to-service communication.">
+    <h3>IAM Service Accounts</h3>
+    <p>ID Tokens • Auth Context • Internal Trust</p>
+  </div>
+
+  <div class="box" style="left:120px;top:820px; width:280px;" data-info="Stores conversational sessions, memory and persistent agent state.">
+    <h3>Cloud SQL</h3>
+    <p>Session State • Conversation Memory • Persistence</p>
+  </div>
+
+  <div class="box" style="left:520px;top:820px; width:280px;" data-info="AI-enabled PostgreSQL database supporting embeddings, vector search and semantic retrieval.">
+    <h3>AlloyDB AI</h3>
+    <p>Vector Search • RAG • Embeddings • Semantic Search</p>
+  </div>
+
+  <div class="box" style="left:920px;top:820px; width:280px;" data-info="Graph database enabling relationship traversal and GraphRAG reasoning.">
+    <h3>Cloud Spanner Graph</h3>
+    <p>Entity Graph • Relationship Traversal • Graph Analytics</p>
+  </div>
+
+  <div class="box" style="left:1320px;top:820px; width:280px;" data-info="Vertex AI serving Gemini inference and orchestration.">
+    <h3>Vertex AI + Gemini</h3>
+    <p>Inference Layer • LLM Reasoning • Tool Calling</p>
+  </div>
+
+  <div class="box" style="left:220px;top:1080px; width:260px;" data-info="Distributed tracing and request observability across services.">
+    <h3>Cloud Trace</h3>
+    <p>Distributed Tracing & Latency Insights</p>
+  </div>
+
+  <div class="box" style="left:620px;top:1080px; width:260px;" data-info="Centralized logging for infrastructure and application debugging.">
+    <h3>Cloud Logging</h3>
+    <p>Audit Logs • Error Tracking • Runtime Logs</p>
+  </div>
+
+  <div class="box" style="left:1020px;top:1080px; width:260px;" data-info="Infrastructure monitoring, metrics, uptime checks and dashboards.">
+    <h3>Cloud Monitoring</h3>
+    <p>Metrics • Dashboards • Alerts • SLOs</p>
+  </div>
+
+  <div class="box" style="left:1420px;top:1080px; width:260px;" data-info="Private networking isolation using PSA/PSC and internal-only service communication.">
+    <h3>Private VPC Network</h3>
+    <p>PSC • PSA • Internal Routing • Zero Public DB Access</p>
+  </div>
+
+  <svg>
+
+    <!-- Base Architecture Connections -->
+    <path class="line" d="M320 125 L420 125" />
+    <path class="line" d="M660 125 L760 125" />
+    <path class="line" d="M1000 125 L1100 125" />
+
+    <path class="line" d="M540 180 L720 280" />
+    <path class="line" d="M880 180 L760 280" />
+
+    <path class="line" d="M760 370 L410 520" />
+    <path class="line" d="M760 370 L880 520" />
+
+    <path class="line" d="M570 590 L720 590" />
+
+    <path class="line" d="M410 650 L260 820" />
+    <path class="line" d="M880 650 L660 820" />
+    <path class="line" d="M880 650 L1060 820" />
+
+    <path class="line" d="M660 910 L1320 910" />
+
+    <path class="line" d="M260 930 L360 1080" />
+    <path class="line" d="M660 930 L760 1080" />
+    <path class="line" d="M1060 930 L1160 1080" />
+
+    <path class="line" d="M1540 930 L1540 1080" />
+
+    <!-- AUTH FLOW -->
+    <path id="auth" class="flow" stroke="#a855f7"
+      d="M320 125 L420 125 L760 125 L760 280 L760 370 L410 520" />
+
+    <!-- QUERY FLOW -->
+    <path id="query" class="flow" stroke="#22c55e"
+      d="M410 520 L880 520 L1060 820 L1320 820" />
+
+    <!-- TOOL FLOW -->
+    <path id="tool" class="flow" stroke="#f59e0b"
+      d="M410 590 L720 590 L880 650 L660 820" />
+
+    <!-- GRAPH FLOW -->
+    <path id="graph" class="flow" stroke="#38bdf8"
+      d="M880 650 L1060 820" />
+
+    <!-- SESSION FLOW -->
+    <path id="session" class="flow" stroke="#ec4899"
+      d="M410 650 L260 820" />
+
+    <!-- OBS FLOW -->
+    <path id="obs" class="flow" stroke="#eab308"
+      d="M410 650 L360 1080 L760 1080 L1160 1080" />
+
+  </svg>
+</div>
+
+<div class="legend">
+  <h3>Interactive Flow Controls</h3>
+
+  <div class="legend-item">
+    <div class="legend-color" style="background:#a855f7"></div>
+    <span>Authentication & Identity Flow</span>
+  </div>
+
+  <div class="legend-item">
+    <div class="legend-color" style="background:#22c55e"></div>
+    <span>User Query & Runtime Flow</span>
+  </div>
+
+  <div class="legend-item">
+    <div class="legend-color" style="background:#f59e0b"></div>
+    <span>Tool Invocation Flow</span>
+  </div>
+
+  <div class="legend-item">
+    <div class="legend-color" style="background:#38bdf8"></div>
+    <span>Graph Retrieval Flow</span>
+  </div>
+
+  <div class="legend-item">
+    <div class="legend-color" style="background:#ec4899"></div>
+    <span>Session Persistence Flow</span>
+  </div>
+
+  <div class="legend-item">
+    <div class="legend-color" style="background:#eab308"></div>
+    <span>Observability & Monitoring Flow</span>
+  </div>
+
+  <hr style="margin:16px 0;border-color:rgba(255,255,255,0.08)">
+
+  <p style="font-size:13px;color:#cbd5e1;line-height:1.6;">
+    Hover over any architecture block to see a quick explanation.
+    Use the buttons above to animate specific runtime paths through the system.
+  </p>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+  const tooltip = document.getElementById('tooltip');
+  const boxes = document.querySelectorAll('.box');
+
+  boxes.forEach(box => {
+    box.addEventListener('mousemove', e => {
+      tooltip.style.opacity = 1;
+      tooltip.style.left = e.clientX + 15 + 'px';
+      tooltip.style.top = e.clientY + 15 + 'px';
+      tooltip.innerHTML = box.dataset.info;
+    });
+
+    box.addEventListener('mouseleave', () => {
+      tooltip.style.opacity = 0;
+    });
+  });
+
+  function resetFlows() {
+    document.querySelectorAll('.flow').forEach(f => {
+      f.style.opacity = 0;
+    });
+  }
+
+  function toggleFlow(id) {
+    const flow = document.getElementById(id);
+
+    if(flow.style.opacity == 1) {
+      flow.style.opacity = 0;
+    } else {
+      flow.style.opacity = 1;
+    }
+  }
+</script>
+
+</body>
+</html>
