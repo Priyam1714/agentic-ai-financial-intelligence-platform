@@ -151,6 +151,35 @@ The platform follows a zero-trust architecture model:
 
 ---
 
+# Production Readiness Notice
+
+This repository represents a portfolio and educational implementation of a cloud-native Agentic AI platform and should not be considered production-ready for unrestricted public deployment in its current form.
+
+While the project incorporates several enterprise-oriented architectural patterns such as:
+
+* zero-trust access control
+* private networking
+* IAM-based authentication
+* IAP-secured access
+* governed tool orchestration
+* observability instrumentation
+
+a production-grade deployment would still require additional hardening and operational safeguards, including:
+
+* advanced rate limiting and abuse protection
+* Web Application Firewall (WAF) integration
+* enhanced RBAC and tenant isolation
+* automated security auditing
+* secrets rotation policies
+* production-grade CI/CD pipelines
+* disaster recovery and backup strategies
+* advanced monitoring and alerting
+* multi-region resiliency and failover
+* formal security reviews and penetration testing
+
+This implementation is intended to demonstrate architectural design, cloud infrastructure orchestration, secure AI system patterns, and enterprise-style deployment workflows rather than serve as a fully production-certified financial platform.
+
+
 # Disclaimer
 
 This repository is a sanitized educational and portfolio version of the original implementation. Sensitive infrastructure identifiers, secrets, and deployment-specific configurations have been removed or generalized for security purposes.
